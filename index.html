@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Web Push Notification Demo</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
+    </head>
+    <body>
+        <div>
+            <label>Title</label>
+            <input type="text" value="" class="title" />
+        </div>
+        <div>
+            <label>Message</label>
+            <input type="text" value="" class="Message" />
+        </div>
+        <div>
+            <label>Icon Url</label>
+            <input type="text" value="" class="iconUrl" />
+        </div>
+        <div>
+            <input type="button" value="submit" class="submit" />
+        </div>
+        <script>
+            $(function () {
+                $("body").on("click", ".submit", function () {
+                    var t = $(".title").val();
+                    var m = $(".Message").val();
+                    var i = $(".iconUrl").val();
+                    if (t != "" && m != "" && i != "") {
+                        ShowNotification(t, m, i);
+                    } else {
+                        alert("Please fill all !")
+                    }
+                });
+
+            });
+            function ShowNotification(t, m, i) {
+                Notification.requestPermission(function (result) {
+                    if (result === 'granted') {
+                        var n = new Notification(t);
+                    } else {
+                        alert("Please allow us to send Notification");
+                    }
+                })
+
+            }
+        </script>
+    </body>
+
+
+
+</html>
