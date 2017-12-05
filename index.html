@@ -4,53 +4,58 @@
         <title>Web Push Notification Demo</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="//code.jquery.com/jquery-2.1.4.min.js"></script> 
+        <script src="http://code.jquery.com/jquery-2.1.4.min.js"></script> 
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     </head>
-    <body>
-        <div>
+    <body >
+    <center >
+        <div style="max-width: 300px">
             <label>Title</label>
-            <input type="text" value="" class="title" />
+            <input type="text" value="" class="title input-lg form-control" />
         </div>
-        <div>
+        <div style="max-width: 300px">
             <label>Message</label>
-            <input type="text" value="" class="Message" />
+            <input type="text" value="" class="Message form-control" />
         </div>
-        <div>
+        <div style="max-width: 300px">
             <label>Icon Url</label>
-            <input type="text" value="" class="iconUrl" />
+            <input type="text" value="" class="iconUrl form-control" />
         </div>
-        <div>
-            <input type="button" value="submit" class="submit" />
+        <div style="max-width: 300px; padding-top: 10px">
+            <input type="button" value="submit" class="submit btn btn-success" />
         </div>
-        <script>
-            $(function () {
-                $("body").on("click", ".submit", function () {
-                    var t = $(".title").val();
-                    var m = $(".Message").val();
-                    var i = $(".iconUrl").val();
-                    if (t != "" && m != "" && i != "") {
-                        ShowNotification(t, m, i);
-                    } else {
-                        alert("Please fill all !")
-                    }
-                });
-
+    </center>
+    <script>
+        $(function () {
+            $("body").on("click", ".submit", function () {
+                var t = $(".title").val();
+                var m = $(".Message").val();
+                var i = $(".iconUrl").val();
+                if (t != "" && m != "" && i != "") {
+                    ShowNotification(t, m, i);
+                } else {
+                    alert("Please fill all !")
+                }
             });
-            function ShowNotification(t, m, i) {
-                Notification.requestPermission(function (result) {
-                    if (result === 'granted') {
-                        var n = new Notification(t, {
-                            body: m,
-                            icon: i
-                        });
-                    } else {
-                        alert("Please allow us to send Notification");
-                    }
-                })
 
-            }
-        </script>
-    </body>
+        });
+        function ShowNotification(t, m, i) {
+            Notification.requestPermission(function (result) {
+                if (result === 'granted') {
+                    var n = new Notification(t, {
+                        body: m,
+                        icon: i
+                    });
+                } else {
+                    alert("Please allow us to send Notification");
+                }
+            })
+
+        }
+    </script>
+</body>
 
 
 
