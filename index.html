@@ -39,7 +39,10 @@
             function ShowNotification(t, m, i) {
                 Notification.requestPermission(function (result) {
                     if (result === 'granted') {
-                        var n = new Notification(t);
+                        var n = new Notification(t, {
+                            body: m,
+                            icon: i
+                        });
                     } else {
                         alert("Please allow us to send Notification");
                     }
